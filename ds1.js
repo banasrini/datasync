@@ -24,17 +24,30 @@ function syntaxHighlight(json) {
     });
 }
 
-function keys() {
+/*function keys() {
  console.log("in the keys");
- pubkey = $('#pub').val();
- subkey = $('#sub').val();
-} 
+ pubkey = $("#pub").val();
+ subkey = $("#sub").val();
+ }
 
-var pubnub = PUBNUB({
-    publish_key   : pubkey,
-    subscribe_key : subkey,
-    origin        : "pubsub-beta.pubnub.com"
-});
+var button = PUBNUB.$('buttonsub');
+			var pubnub = PUBNUB.init({
+			publish_key   : $("#pub").val(),
+			subscribe_key : $("#sub").val(),
+			origin : "pubsub-beta.pubnub.com"
+		})
+		*/
+	
+var button = PUBNUB.$('buttonsub');
+
+	var pubnub = PUBNUB.init({
+			publish_key   : $("#pub").val(),
+			subscribe_key : $("#sub").val(),
+			origin : "pubsub-beta.pubnub.com"
+		})
+	$("buttonsub").click(button);
+		
+
  
 var my_object_id = 'betaHome';
  
@@ -104,27 +117,29 @@ setTimeout(function() {
     setTimeout(function() {
         // Merge
         pubnub.merge({
-            callback : function(a, b, c) {
+            callback : function(m) {
                 console.log('write request finished');
                 console.log(game);
  
                 // Delete
                 setTimeout(function() {
                     pubnub.merge({
-                        callback : function(a, b, c) {
+                        callback : function(m) {
                             console.log('write request finished');
                             console.log(game);
                         },
-                        error : function(a, b, c) {
+                        error : function(m) {
                             console.log('write request error');
+                            
                         },
                         object_id : my_object_id,
                         path : " "
                     });
                 }, 1000);
             },
-            error : function(a, b, c) {
+            error : function(m) {
                 console.log('write request error');
+                console.log(JSON.stringify(m));
             },
             object_id : my_object_id,
             data : {
