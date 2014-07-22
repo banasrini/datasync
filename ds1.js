@@ -26,9 +26,10 @@ function syntaxHighlight(json) {
 
 function keys() {
  console.log("in the keys");
- pubkey = $('#pub').val();
- subkey = $('#sub').val();
-} 
+ pubkey = $("#pub").val();
+ subkey = $("#sub").val();
+ alert($("#pub").val());
+}
 
 var pubnub = PUBNUB({
     publish_key   : pubkey,
@@ -104,18 +105,18 @@ setTimeout(function() {
     setTimeout(function() {
         // Merge
         pubnub.merge({
-            callback : function(a, b, c) {
+            callback : function(m) {
                 console.log('write request finished');
                 console.log(game);
  
                 // Delete
                 setTimeout(function() {
                     pubnub.merge({
-                        callback : function(a, b, c) {
+                        callback : function(m) {
                             console.log('write request finished');
                             console.log(game);
                         },
-                        error : function(a, b, c) {
+                        error : function(m) {
                             console.log('write request error');
                         },
                         object_id : my_object_id,
@@ -123,7 +124,7 @@ setTimeout(function() {
                     });
                 }, 1000);
             },
-            error : function(a, b, c) {
+            error : function(m) {
                 console.log('write request error');
             },
             object_id : my_object_id,
