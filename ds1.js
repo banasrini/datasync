@@ -1,5 +1,9 @@
+$(document).ready(function(){
+
+
 var pubkey;
 var subkey;
+
 function output(inp) {
 	document.getElementById("code").innerHTML = inp;
    
@@ -24,30 +28,21 @@ function syntaxHighlight(json) {
     });
 }
 
-/*function keys() {
- console.log("in the keys");
- pubkey = $("#pub").val();
- subkey = $("#sub").val();
- }
+		
+$("#buttonsub").one("click", function(){
 
-var button = PUBNUB.$('buttonsub');
-			var pubnub = PUBNUB.init({
-			publish_key   : $("#pub").val(),
-			subscribe_key : $("#sub").val(),
-			origin : "pubsub-beta.pubnub.com"
-		})
-		*/
-	
-var button = PUBNUB.$('buttonsub');
 
+ 	var button = PUBNUB.$('buttonsub');
+	console.log($("#sub").val());
+	console.log($("#pub").val());
 	var pubnub = PUBNUB.init({
 			publish_key   : $("#pub").val(),
 			subscribe_key : $("#sub").val(),
 			origin : "pubsub-beta.pubnub.com"
 		})
-	$("buttonsub").click(button);
-		
+ 
 
+ 
  
 var my_object_id = 'betaHome';
  
@@ -152,12 +147,7 @@ setTimeout(function() {
  
 }, 3000);
 
-
-function changelight() {
-// if the light.src == on, make if off and call a merge and change the music to 0.
-// else, make it 1.
-
-
+$("#light_nav").click(function() {
 	if(document.getElementById("light_img").dataset.icon == "light")
 	{
 	document.getElementById("light_img").dataset.icon = "lighton";
@@ -194,13 +184,48 @@ function changelight() {
                         	}
                     });
 	}
-	
-}
+});
 
-function changemusic() {
+$("#door_nav").click(function() {
+	if(document.getElementById("door_img").dataset.icon == "door")
+	{
+	document.getElementById("door_img").dataset.icon = "dooron";
+		pubnub.merge({
+                        callback : function(m) {
+                            console.log('write request finished');
+                            console.log(game);
+                        },
+                        error : function(m) {
+                            console.log('write request error');
+                        },
+                        object_id : my_object_id,
+                        data : {
+                        "door":1,
+                        	"msg" : "The door is unlocked"
+                        	}
+                    });
+	}
+	else
+	{
+		document.getElementById("door_img").dataset.icon = "door";
+		pubnub.merge({
+    	                    callback : function(m) {
+                            console.log('write request finished');
+                            console.log(game);
+                        },
+                        error : function(m) {
+                            console.log('write request error');
+                        },
+                        object_id : my_object_id,
+                        data : {
+                        	"door":0,
+                        	"msg" : "The door is locked"
+                        	}
+                    });
+	}
+});
 
-
-
+$("#music_nav").click(function() {
 	if(document.getElementById("music_img").dataset.icon == "music")
 	{
 	document.getElementById("music_img").dataset.icon = "musicon";
@@ -237,12 +262,10 @@ function changemusic() {
                         	}
                     });
 	}
-	
+});
 
-}
-
-function changegarage() {
-if(document.getElementById("garage_img").dataset.icon == "garage")
+$("#garage_nav").click(function() {
+	if(document.getElementById("garage_img").dataset.icon == "garage")
 	{
 	document.getElementById("garage_img").dataset.icon = "garageon";
 		pubnub.merge({
@@ -278,43 +301,15 @@ if(document.getElementById("garage_img").dataset.icon == "garage")
                         	}
                     });
 	}
-}
+});
 
-function changedoor() {
-if(document.getElementById("door_img").dataset.icon == "door")
-	{
-	document.getElementById("door_img").dataset.icon = "dooron";
-		pubnub.merge({
-                        callback : function(m) {
-                            console.log('write request finished');
-                            console.log(game);
-                        },
-                        error : function(m) {
-                            console.log('write request error');
-                        },
-                        object_id : my_object_id,
-                        data : {
-                        "door":1,
-                        	"msg" : "The door is unlocked"
-                        	}
-                    });
-	}
-	else
-	{
-		document.getElementById("door_img").dataset.icon = "door";
-		pubnub.merge({
-    	                    callback : function(m) {
-                            console.log('write request finished');
-                            console.log(game);
-                        },
-                        error : function(m) {
-                            console.log('write request error');
-                        },
-                        object_id : my_object_id,
-                        data : {
-                        	"door":0,
-                        	"msg" : "The door is locked"
-                        	}
-                    });
-	}
-}
+return false;
+
+ });
+ 
+ 
+ 
+ 
+ });
+ 
+ 

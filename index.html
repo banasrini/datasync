@@ -34,7 +34,7 @@
 	
 <br>
 	
-<div class="section white">
+<!--<div class="section white">
   <div class="container">
 	<div class="col-sm-3" id = "icons">
 	<div class="row">
@@ -53,17 +53,11 @@
 	</div>
 		<br>
   		<div class="row">
-  			Sub Key: <input type="text" id = "sub" name="Subscribe Key"><br>
-			Pub Key: <input type="text" id = "pub" name="Publish Key"><br> 
+  			Sub Key: <input type="text" id="sub" name="Subscribe Key" placeholder ="Type in your subkey"><br>
+			Pub Key: <input type="text" id="pub" name="Publish Key" placeholder ="Type in your pubkey"><br> 
 			
 			
-			<!--	Sub Key: <input type="text" id = "sub" name="Subscribe Key" value="sub-c-d1c2cc5a-1102-11e4-8880-02ee2ddab7fe"><br>
-			Pub Key: <input type="text" id = "pub" name="Publish Key" value="pub-c-bf446f9e-dd7f-43fe-8736-d6e5dce3fe67"><br> 
-			
-			Sub Key: <input type="text" id = "sub" name="Subscribe Key" ><br>
-			Pub Key: <input type="text" id = "pub" name="Publish Key" ><br> -->
-			
-			<button id ="buttonsub" > Submit the keys </button><br></br> 
+			<button id="buttonsub"> Start the Demo!! </button><br></br> 
   			<pre id = "code"></pre>
   		</div>
 	</div>
@@ -78,6 +72,54 @@
      	</div>
      </div>
   </div>
+  </div>
+</div> -->
+<!-- Place working demo in here -->
+<div class="section padding-extra white" id="demo">
+
+	<div class="container">
+	<p class ="padding-bottom">This demo shows you PubNub Data Sync in action. Punch in your sub and pub keys and start the demo. Click on the light, music, door and 
+	garage icons to see how you can change the state of variables and update them from anywhere. </p>
+  		<div class="row">
+			<div class="col-sm-3" id = "icons">
+				<div class="row">
+					<div class = "col-sm-6">
+						<div class = "nav-left-a" id = "light_nav"><i class="fa fa-lightbulb-o fa-4x"></i></div>
+  						<div class = "nav-left-a" id = "door_nav" onClick ="changedoor();"><i class="fa fa-lock fa-4x"></i></div>
+      				</div>
+      			
+      				<div class = "col-sm-6">
+      				
+      					<div class = "nav-left-a" id = "music_nav" onClick ="changemusic();"><i class="fa fa-music fa-3x"></i></div>
+  						<div class = "nav-left-a" id = "garage_nav" onClick ="changegarage();"><i class="fa fa-automobile fa-3x"></i></div>
+  					</div>
+				</div>
+				
+  				<div class="row padding-top">
+  					<form class="form-general">
+  						<div class ="row">
+  							<label for="sub" >Sub Key:</label> <input type="text" id = "sub" name="Subscribe Key"  placeholder ="Type in your subkey">
+  						</div>
+  						<div class ="row">
+							<label for="pub" >Pub Key: </label><input type="text" id = "pub" name="Publish Key"  placeholder ="Type in your pubkey">
+						</div>
+					
+						<button id ="buttonsub"> Start the Demo </button><br></br>
+					</form>
+  					
+  					<pre id = "code"></pre>
+  				</div>
+			</div>
+    
+    	<div class="col-sm-9">
+      		<div class = "home">
+    			<img id = "light_img" src ="images/light.png"   data-icon="light" >
+    			<img id = "door_img" src ="images/door.png"  data-icon="door" >
+     			<img id = "music_img" src ="images/music.png"  data-icon="music" >
+     			<img id = "garage_img" src ="images/garage.png"  data-icon="garage" >
+     		</div>
+     	</div>
+  	</div>
   </div>
 </div>
 	
