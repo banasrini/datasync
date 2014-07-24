@@ -10,16 +10,10 @@
 	<!--<script src="http://rawgit.com/pubnub/javascript/f17cee31a3aa1f82057059cf78d843580ce6fac9/web/pubnub.js"></script> -->
 	<script src ="https://rawgit.com/pubnub/javascript/ffdb4e84306f043911b4ce87a7f3c37e0869b863/web/pubnub.js"></script>
 	<script src="http://cdn.pubnub.com/pubnub.min.js"></script>
-	
-<!--	<script src="ds1.js"></script> -->
-<script src="ds1.js"></script>
+	<script src="ds1.js"></script>
 </head>
 <body>
-<!--	<div class="section white">
-	<div class = "container">
-	JSON messages appear here
-	</div>
-	</div> -->
+
 	
 <header class="navbar-fixed-top card" style = "background-color:black;">
   <div class="container">
@@ -34,91 +28,50 @@
 	
 <br>
 	
-<!--<div class="section white">
-  <div class="container">
-	<div class="col-sm-3" id = "icons">
-	<div class="row">
-		<div class = "col-sm-6">
-    
-      		<div class = "nav-left-a" id = "light_nav" onClick ="changelight();"><i class="fa fa-lightbulb-o fa-4x"></i></div>
-  			<div class = "nav-left-a" id = "light_nav" onClick ="changedoor();"><i class="fa fa-lock fa-4x"></i></div>
-      	</div>
-      			
-      	<div class = "col-sm-6">
-      	
-      		<div class = "nav-left-a" id = "light_nav" onClick ="changemusic();"><i class="fa fa-music fa-3x"></i></div>
-  			<div class = "nav-left-a" id = "light_nav" onClick ="changegarage();"><i class="fa fa-automobile fa-3x"></i></div>
-  			
-  		</div>
-	</div>
-		<br>
-  		<div class="row">
-  			Sub Key: <input type="text" id="sub" name="Subscribe Key" placeholder ="Type in your subkey"><br>
-			Pub Key: <input type="text" id="pub" name="Publish Key" placeholder ="Type in your pubkey"><br> 
-			
-			
-			<button id="buttonsub"> Start the Demo!! </button><br></br> 
-  			<pre id = "code"></pre>
-  		</div>
-	</div>
-    
-    <div class="col-sm-9">
-      	<div class = "home">
-    		<img src ="images/home.png" height = "700px" width = "750px" data-icon="light" >
-    		<img id = "light_img" src ="images/light.png"   data-icon="light" >
-    		<img id = "door_img" src ="images/door.png"  data-icon="door" >
-     		<img id = "music_img" src ="images/music.png"  data-icon="music" >
-     		<img id = "garage_img" src ="images/garage.png"  data-icon="garage" >
-     	</div>
-     </div>
-  </div>
-  </div>
-</div> -->
-<!-- Place working demo in here -->
-<div class="section padding-extra white" id="demo">
 
+<!-- Place working demo in here -->
+<<div class="section padding-extra white" id="demo">
 	<div class="container">
-	<p class ="padding-bottom">This demo shows you PubNub Data Sync in action. Punch in your sub and pub keys and start the demo. Click on the light, music, door and 
-	garage icons to see how you can change the state of variables and update them from anywhere. </p>
-  		<div class="row">
-			<div class="col-sm-3" id = "icons">
-				<div class="row">
-					<div class = "col-sm-6">
-						<div class = "nav-left-a" id = "light_nav"><i class="fa fa-lightbulb-o fa-4x"></i></div>
-  						<div class = "nav-left-a" id = "door_nav" onClick ="changedoor();"><i class="fa fa-lock fa-4x"></i></div>
-      				</div>
-      			
-      				<div class = "col-sm-6">
-      				
-      					<div class = "nav-left-a" id = "music_nav" onClick ="changemusic();"><i class="fa fa-music fa-3x"></i></div>
-  						<div class = "nav-left-a" id = "garage_nav" onClick ="changegarage();"><i class="fa fa-automobile fa-3x"></i></div>
-  					</div>
-				</div>
-				
-  				<div class="row padding-top">
-  					<form class="form-general">
-  						<div class ="row">
-  							<label for="sub" >Sub Key:</label> <input type="text" id = "sub" name="Subscribe Key"  placeholder ="Type in your subkey">
-  						</div>
-  						<div class ="row">
-							<label for="pub" >Pub Key: </label><input type="text" id = "pub" name="Publish Key"  placeholder ="Type in your pubkey">
-						</div>
-					
-						<button id ="buttonsub"> Start the Demo </button><br></br>
-					</form>
-  					
+		<p class ="padding-bottom">This demo shows you PubNub Data Sync in action. Punch in your sub and pub keys and start the demo. Click on the light, music, door and 
+		garage icons to see how you can change the state of variables and update them from anywhere. 
+		</p>
+		<form class="form-general" onsubmit="return false;">
+  			<div class ="row">
+  				<label for="sub">Sub Key:</label> <input type="text" id = "sub" name="Subscribe Key"  placeholder ="Type in your subkey">
+  			</div>
+  			<div class ="row">
+				<label for="pub">Pub Key: </label><input type="text" id = "pub" name="Publish Key"  placeholder ="Type in your pubkey">
+			</div>
+			<button id ="buttonsub"> Submit the keys </button><br></br>
+		</form>
+		
+		
+  		<div class="row padding-right">
+			<div class="col-md-4">
+      			<div class = "laptop">
+    				<img id = "light_icon" src ="images/lighticon.jpg" >
+    				<img id = "door_icon" src ="images/lockicon.jpg" >
+     				<img id = "music_icon" src ="images/musicicon.jpg" >
+     				<img id = "garage_icon" src ="images/garageicon.jpg" >
+     			</div>
+     			<div class="row">
   					<pre id = "code"></pre>
   				</div>
-			</div>
+     		</div>
     
-    	<div class="col-sm-9">
+    	<div class="col-md-4">
       		<div class = "home">
     			<img id = "light_img" src ="images/light.png"   data-icon="light" >
-    			<img id = "door_img" src ="images/door.png"  data-icon="door" >
+    			<img id = "door_img" src ="images/door.png"  data-icon="door">
      			<img id = "music_img" src ="images/music.png"  data-icon="music" >
      			<img id = "garage_img" src ="images/garage.png"  data-icon="garage" >
      		</div>
      	</div>
+     	
+     	<div class="col-md-4">
+      		Phone goes here
+     	</div>
+     	
   	</div>
   </div>
 </div>
