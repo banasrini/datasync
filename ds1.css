@@ -29,8 +29,8 @@ pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; font-size:12px; }
     background: -moz-linear-gradient(top, #c8c8c8 , #989898); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to top, #c8c8c8 , #989898); /* Standard syntax (must be last) */
 
-    width: 100px;
-    height:80px;
+    width: 80px;
+    height:60px;
     text-align: center;
     padding: 4px;
     text-decoration: none;
@@ -39,23 +39,26 @@ pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; font-size:12px; }
     border-radius: 10px;
     box-shadow: 3px 3px 1px #888888;
     }
-    
-#icons{
-	padding-top: 5px;
-    padding-right: 40px;
-    padding-left: 35px;
-    }
+
     
     
 .home{
-background-image:url('images/home.png');
+background-image:url('images/redhome.png');
 background-repeat:no-repeat;
-height:700px; 
-width:750px;
+height:400px; 
+width:450px;
 background-position: 0 0;
-background-size: 750px 700px;
+background-size: 450px 400px;
 }
     
+.laptop{
+background-image:url('images/laptop.jpg');
+background-repeat:no-repeat;
+height:400px; 
+width:450px;
+background-position: 0 0;
+background-size: 280px 280px;
+}
 .nav-left-a:hover, .nav-left-a:active {
  /*   background-color: #fbf6d9;
     color:black; */
@@ -78,7 +81,12 @@ border-radius:5px;
 
 	}
 
-#light_img {height:75px;width:70px; position:absolute; top: 340px; left: 220px;  } 
-#door_img { height:120px;width:120px;position:absolute; top: 530px; left: 195px; } 
-#music_img { height:100px;width:100px;position:absolute; top: 330px; left: 400px; } 
-#garage_img { height:120px;width:220px;position:absolute; top: 530px; left: 345px; } 
+#light_img {height:45px;width:40px; position:absolute; top: 200px; left: 160px;  } 
+#door_img { height:70px;width:50px;position:absolute; top: 310px; left: 150px; } 
+#music_img { height:50px;width:50px;position:absolute; top: 190px; left: 270px; } 
+#garage_img { height:60px;width:95px;position:absolute; top: 320px; left: 260px; } 
+
+#light_icon {height:35px;width:30px; position:absolute; top: 70px; left: 100px;  } 
+#door_icon { height:50px;width:50px;position:absolute; top: 120px; left: 90px; } 
+#music_icon { height:30px;width:30px;position:absolute; top: 70px; left: 170px; } 
+#garage_icon { height:30px;width:30px;position:absolute; top: 130px; left:170px; } 

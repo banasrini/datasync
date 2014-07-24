@@ -31,7 +31,7 @@ function syntaxHighlight(json) {
 		
 $("#buttonsub").one("click", function(){
 
-
+$("#buttonsub").remove();
  	var button = PUBNUB.$('buttonsub');
 	console.log($("#sub").val());
 	console.log($("#pub").val());
@@ -45,52 +45,66 @@ $("#buttonsub").one("click", function(){
  
  
 var my_object_id = 'betaHome';
+
+
+var handleGameData = function(game) {
+ 
+    console.log('sync updates');
+ 
+    console.log("game.light",game.data.light);
+ 
+    if(game.data.light == 1){
+    console.log(document.getElementById("light_img").src);
+        document.getElementById("light_img").src = "images/lighton.png";
+        document.getElementById("light_img").dataset.icon = "lighton"
+    }
+    else{
+        document.getElementById("light_img").src = "images/light.png";
+        document.getElementById("light_img").dataset.icon = "light"
+    }
+ 
+    if(game.data.music == 1){
+        document.getElementById("music_img").src = "images/musicon.png";
+        document.getElementById("music_img").dataset.icon = "musicon"
+    }
+    else{
+        document.getElementById("music_img").src = "images/music.png";
+        document.getElementById("music_img").dataset.icon = "music"
+    }
+ 
+    if(game.data.garage == 1){
+        document.getElementById("garage_img").src = "images/garageopen.png";
+        document.getElementById("garage_img").dataset.icon = "garageon"
+    }
+    else{
+        document.getElementById("garage_img").src = "images/garage.png";
+        document.getElementById("garage_img").dataset.icon = "garage"
+    }
+ 
+    if(game.data.door == 1){
+        document.getElementById("door_img").src = "images/dooropen.png";
+        document.getElementById("door_img").dataset.icon = "dooron"
+    }
+    else{
+        document.getElementById("door_img").src = "images/door.png";
+        document.getElementById("door_img").dataset.icon = "door"
+    }
+ 
+    var str = JSON.stringify(game, undefined, 4);
+ 
+    output(syntaxHighlight(str));
+ 
+};
  
 var game = pubnub.get_synced_object({
     callback : function(m) {
-        console.log('sync updates');
+ 
+        handleGameData(game);
+ 
+    },
+    ready : function(m) {
         
-        var str = JSON.stringify(game, undefined, 4);
-
-		output(syntaxHighlight(str));
-    	console.log("game.light",game.data.light);
-    	if(game.data.light == 1){
-    	console.log(document.getElementById("light_img").src);
-    		document.getElementById("light_img").src = "images/lighton.png";
-            document.getElementById("light_img").dataset.icon = "lighton"
-        }
-        else{
-        	document.getElementById("light_img").src = "images/light.png";
-            document.getElementById("light_img").dataset.icon = "light"
-        }
-        
-        if(game.data.music == 1){
-    		document.getElementById("music_img").src = "images/musicon.png";
-            document.getElementById("music_img").dataset.icon = "musicon"
-        }
-        else{
-        	document.getElementById("music_img").src = "images/music.png";
-            document.getElementById("music_img").dataset.icon = "music"
-        }
-        
-        if(game.data.garage == 1){
-    		document.getElementById("garage_img").src = "images/garageopen.png";
-            document.getElementById("garage_img").dataset.icon = "garageon"
-        }
-        else{
-        	document.getElementById("garage_img").src = "images/garage.png";
-            document.getElementById("garage_img").dataset.icon = "garage"
-        }
-        
-        if(game.data.door == 1){
-    		document.getElementById("door_img").src = "images/dooropen.png";
-            document.getElementById("door_img").dataset.icon = "dooron"
-        }
-        else{
-        	document.getElementById("door_img").src = "images/door.png";
-            document.getElementById("door_img").dataset.icon = "door"
-        }
-        
+        handleGameData(game);
     },
     error : function(a, b, c) {
         console.log('sync error');
@@ -98,56 +112,21 @@ var game = pubnub.get_synced_object({
     object_id : my_object_id
 });
  
- 
-
- 
- 
- 
-// Need to wait before "game" object is ready.
-// Filed a bug asking for a "ready" callback from get_synced_object
-setTimeout(function() {
-    console.log('game finished');
-    console.log(game.a);
+var gameChecker = function() {
  
     setTimeout(function() {
-        // Merge
-        pubnub.merge({
-            callback : function(m) {
-                console.log('write request finished');
-                console.log(game);
+        if (game.data !== {}) {
+            handleGameData(game);
+        } else {
+            gameChecker();
+        }
+    }, 250);
  
-                // Delete
-                setTimeout(function() {
-                    pubnub.merge({
-                        callback : function(m) {
-                            console.log('write request finished');
-                            console.log(game);
-                        },
-                        error : function(m) {
-                            console.log('write request error');
-                            
-                        },
-                        object_id : my_object_id,
-                        path : " "
-                    });
-                }, 1000);
-            },
-            error : function(m) {
-                console.log('write request error');
-                console.log(JSON.stringify(m));
-            },
-            object_id : my_object_id,
-            data : {
-                "first" : "Bob",
-                "last" : "Jetson"
-                
-            }
-        });
-    }, 1000);
+};
  
-}, 3000);
+gameChecker();
 
-$("#light_nav").click(function() {
+$("#light_icon").click(function() {
 	if(document.getElementById("light_img").dataset.icon == "light")
 	{
 	document.getElementById("light_img").dataset.icon = "lighton";
@@ -186,7 +165,7 @@ $("#light_nav").click(function() {
 	}
 });
 
-$("#door_nav").click(function() {
+$("#door_icon").click(function() {
 	if(document.getElementById("door_img").dataset.icon == "door")
 	{
 	document.getElementById("door_img").dataset.icon = "dooron";
@@ -225,7 +204,7 @@ $("#door_nav").click(function() {
 	}
 });
 
-$("#music_nav").click(function() {
+$("#music_icon").click(function() {
 	if(document.getElementById("music_img").dataset.icon == "music")
 	{
 	document.getElementById("music_img").dataset.icon = "musicon";
@@ -264,7 +243,7 @@ $("#music_nav").click(function() {
 	}
 });
 
-$("#garage_nav").click(function() {
+$("#garage_icon").click(function() {
 	if(document.getElementById("garage_img").dataset.icon == "garage")
 	{
 	document.getElementById("garage_img").dataset.icon = "garageon";
