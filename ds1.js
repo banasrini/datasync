@@ -46,7 +46,7 @@ $("#buttonsub").one("click", function(){
  
 var my_object_id = 'betaHome';
  
-var game = pubnub.get_synced_object({
+/*var game = pubnub.get_synced_object({
     callback : function(m) {
         console.log('sync updates');
         
@@ -145,7 +145,86 @@ setTimeout(function() {
         });
     }, 1000);
  
-}, 3000);
+}, 3000); */
+
+var handleGameData = function(game) {
+ 
+    console.log('sync updates');
+ 
+    console.log("game.light",game.data.light);
+ 
+    if(game.data.light == 1){
+    console.log(document.getElementById("light_img").src);
+        document.getElementById("light_img").src = "images/lighton.png";
+        document.getElementById("light_img").dataset.icon = "lighton"
+    }
+    else{
+        document.getElementById("light_img").src = "images/light.png";
+        document.getElementById("light_img").dataset.icon = "light"
+    }
+ 
+    if(game.data.music == 1){
+        document.getElementById("music_img").src = "images/musicon.png";
+        document.getElementById("music_img").dataset.icon = "musicon"
+    }
+    else{
+        document.getElementById("music_img").src = "images/music.png";
+        document.getElementById("music_img").dataset.icon = "music"
+    }
+ 
+    if(game.data.garage == 1){
+        document.getElementById("garage_img").src = "images/garageopen.png";
+        document.getElementById("garage_img").dataset.icon = "garageon"
+    }
+    else{
+        document.getElementById("garage_img").src = "images/garage.png";
+        document.getElementById("garage_img").dataset.icon = "garage"
+    }
+ 
+    if(game.data.door == 1){
+        document.getElementById("door_img").src = "images/dooropen.png";
+        document.getElementById("door_img").dataset.icon = "dooron"
+    }
+    else{
+        document.getElementById("door_img").src = "images/door.png";
+        document.getElementById("door_img").dataset.icon = "door"
+    }
+ 
+    var str = JSON.stringify(game, undefined, 4);
+ 
+    output(syntaxHighlight(str));
+ 
+};
+ 
+var game = pubnub.get_synced_object({
+    callback : function(m) {
+ 
+        handleGameData(game);
+ 
+    },
+    ready : function(m) {
+        
+        handleGameData(game);
+    },
+    error : function(a, b, c) {
+        console.log('sync error');
+    },
+    object_id : my_object_id
+});
+ 
+var gameChecker = function() {
+ 
+    setTimeout(function() {
+        if (game.data !== {}) {
+            handleGameData(game);
+        } else {
+            gameChecker();
+        }
+    }, 250);
+ 
+};
+ 
+gameChecker();
 
 $("#light_nav").click(function() {
 	if(document.getElementById("light_img").dataset.icon == "light")
